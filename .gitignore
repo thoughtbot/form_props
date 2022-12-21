@@ -1,0 +1,10 @@
+.ruby-version
+.byebug_history
+benchmark.rb
+performance/*/*.png
+*.gem
+Gemfile.lock
+yarn.lock
+.tool-versions
+node_modules
+build

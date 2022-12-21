@@ -1,0 +1,16 @@
+{
+  "name": "form_props",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:thoughtbot/form_props.git",
+  "scripts": {
+    "build": "esbuild index.js --bundle --loader:.js=jsx --outfile=build/out.js"
+  },
+  "author": "Johny Ho <johny@thoughtbot.com>",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.17.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
