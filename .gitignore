@@ -3,8 +3,6 @@
 benchmark.rb
 performance/*/*.png
 *.gem
-Gemfile.lock
-yarn.lock
 .tool-versions
 node_modules
 build
