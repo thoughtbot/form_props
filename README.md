@@ -1,7 +1,9 @@
 # Form Props
 
-FormProps is a Rails form builder that outputs input attributes (in JSON) instead of
-tags. Now you can enjoy the conviences of Rails helpers in other view libraries like
+![Build Status](https://github.com/github/docs/actions/workflows/build.yml/badge.svg?branch=main)
+
+FormProps is a Rails form builder that outputs HTML attributes instead of tags.
+Now you can enjoy the conviences of Rails helpers in other view libraries like
 React, and React Native.
 
 By separting attributes from tags, FormProps can offer greater flexbility than normal
@@ -68,7 +70,7 @@ would output
       }
     },
     inputs: {
-      name: {type: "text", defaultValue: "hello"},
+      title: {name: "post[title]", id: "post_title", type: "text", defaultValue: "hello"},
       submit: {type: "submit", value: "Update a Post"}
     }
   }
@@ -84,8 +86,8 @@ export default ({props, inputs, extras}) => {
   <form {...props}>
     {Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} type="hidden"/>))}
 
-    <input {...inputs.name} type="text"/>
-    <label for={inputs.name.id}>Your Name</label>
+    <input {...inputs.title} type="text"/>
+    <label for={inputs.title.id}>Your Name</label>
 
     <input {...inputs.submit} type="submit"/>
   </form>
@@ -190,7 +192,7 @@ By default, the `controlled` option is `false`.
 
 ###
 
-`props` Attributes that you can splat direclty into your `<form>` element.
+`props` Attributes that you can splat directly into your `<form>` element.
 
 
 `extras` contain hidden input attributes that are created by form_props
