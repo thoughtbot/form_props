@@ -169,7 +169,7 @@ class ActionView::TestCase
       import * as React from 'react'
       import * as Server from 'react-dom/server'
       import Select from './components/Select'
-      import Checkbox from './components/Checkbox'
+      import CheckBox from './components/CheckBox'
       import CollectionCheckBoxes from './components/CollectionCheckBoxes'
       import CollectionRadioButtons from './components/CollectionRadioButtons'
 
