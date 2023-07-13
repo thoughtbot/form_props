@@ -1,6 +1,6 @@
 # Form Props
 
-![Build Status](https://github.com/github/docs/actions/workflows/build.yml/badge.svg?branch=main)
+![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
 FormProps is a Rails form builder that outputs HTML attributes instead of tags.
 Now you can enjoy the conviences of Rails helpers in other view libraries like
