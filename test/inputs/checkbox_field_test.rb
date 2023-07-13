@@ -23,7 +23,7 @@ class CheckboxFieldTest < ActionView::TestCase
 
     output = render_js(<<-JS)
       let formProps = #{result}
-      return <Checkbox {...formProps["inputs"]["admin"]}/>
+      return <CheckBox {...formProps["inputs"]["admin"]}/>
     JS
 
     assert_dom_equal(
@@ -89,7 +89,7 @@ class CheckboxFieldTest < ActionView::TestCase
 
     output = render_js(<<-JS)
       let formProps = #{result}
-      return <Checkbox {...formProps["inputs"]["secret"]}/>
+      return <CheckBox {...formProps["inputs"]["secret"]}/>
     JS
 
     assert_dom_equal(
@@ -116,7 +116,7 @@ class CheckboxFieldTest < ActionView::TestCase
 
     output = render_js(<<-JS)
       let formProps = #{result}
-      return <Checkbox {...formProps["inputs"]["secret"]}/>
+      return <CheckBox {...formProps["inputs"]["secret"]}/>
     JS
 
     assert_dom_equal(
@@ -207,7 +207,7 @@ class CheckboxFieldTest < ActionView::TestCase
 
     output = render_js(<<-JS)
       let formProps = #{result}
-      return <Checkbox {...formProps["inputs"]["secret"]}/>
+      return <CheckBox {...formProps["inputs"]["secret"]}/>
     JS
 
     assert_dom_equal(
