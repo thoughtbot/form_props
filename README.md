@@ -2,9 +2,8 @@
 
 ![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
-FormProps is a Rails form builder that outputs HTML attributes instead of tags.
-Now you can enjoy the conviences of Rails helpers in other view libraries like
-React, and React Native.
+FormProps is a Rails form builder that outputs HTML props instead of tags. Now
+you can enjoy the power and convenience of Rails helpers in React!
 
 By separting attributes from tags, FormProps can offer greater flexbility than normal
 Rails form builders; allowing designers to stay longer in HTML land and more easily
@@ -26,7 +25,7 @@ gem "form_props"
 and `bundle install`
 
 ## Usage
-`form_props` is designed to be used in a [PropsTemplate] template (it can work with 
+`form_props` is designed to be used in a [PropsTemplate] template (it can work with
 [jbuilder](#jbuilder)). For example in your `new.json.props`:
 
 ```ruby
@@ -46,7 +45,7 @@ would output
     props: {
       id: "create-post",
       action: "/posts/123",
-      accept-charset: "UTF-8",
+      acceptCharset: "UTF-8",
       method: "post"
     },
     extras: {
@@ -54,19 +53,19 @@ would output
         name: "_method",
         type: "hidden",
         defaultValue: "patch",
-        autocomplete: "off"
+        autoComplete: "off"
       },
       utf8: {
         name: "utf8",
         type: "hidden",
         defaultValue: "\u0026#x2713;",
-        autocomplete: "off"
+        autoComplete: "off"
       }
       csrf: {
         name: "utf8",
         type: "authenticity_token",
         defaultValue: "SomeTOken!23$",
-        autocomplete: "off"
+        autoComplete: "off"
       }
     },
     inputs: {
@@ -84,12 +83,11 @@ import React from 'react'
 
 export default ({props, inputs, extras}) => {
   <form {...props}>
-    {Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} type="hidden"/>))}
+    {Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} key={hiddenProps.name}/>))}
 
-    <input {...inputs.title} type="text"/>
+    <input {...inputs.title} />
     <label for={inputs.title.id}>Your Name</label>
-
-    <input {...inputs.submit} type="submit"/>
+    <button {...inputs.submit}>{inputs.submit.text}</button>
   </form>
 }
 ```
@@ -649,7 +647,7 @@ available.
 
 ## jbuilder
 
-form_props can work with jbuilder, but needs an extra call in the beginning of 
+form_props can work with jbuilder, but needs an extra call in the beginning of
 your template to `FormProps.set` to inject `json`. For example.
 
 ```ruby

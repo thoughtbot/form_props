@@ -16,7 +16,7 @@ class HiddenFieldTest < ActionView::TestCase
       "defaultValue" => "Hello World",
       "name" => "post[title]",
       "id" => "post_title",
-      "autocomplete" => "off"
+      "autoComplete" => "off"
     }
 
     assert_equal(JSON.parse(result)["inputs"]["title"], expected)
@@ -31,7 +31,7 @@ class HiddenFieldTest < ActionView::TestCase
       "defaultValue" => "1",
       "name" => "post[secret]",
       "id" => "post_secret",
-      "autocomplete" => "off"
+      "autoComplete" => "off"
     }
 
     assert_equal(JSON.parse(result)["inputs"]["secret"], expected)
@@ -48,14 +48,14 @@ class HiddenFieldTest < ActionView::TestCase
       "type" => "hidden",
       "name" => "post[title]",
       "id" => "post_title",
-      "autocomplete" => "off"
+      "autoComplete" => "off"
     }
     assert_equal(JSON.parse(result)["inputs"]["title"], expected)
   end
 
   def test_hidden_field_with_options
     assert_dom_equal(
-      '<input id="post_title" name="post[title]" type="hidden" value="Something Else" autocomplete="off" />',
+      '<input id="post_title" name="post[title]" type="hidden" value="Something Else" autoComplete="off" />',
       hidden_field("post", "title", value: "Something Else")
     )
     @post.title = nil
@@ -69,7 +69,7 @@ class HiddenFieldTest < ActionView::TestCase
       "name" => "post[title]",
       "defaultValue" => "Something Else",
       "id" => "post_title",
-      "autocomplete" => "off"
+      "autoComplete" => "off"
     }
     assert_equal(JSON.parse(result)["inputs"]["title"], expected)
   end

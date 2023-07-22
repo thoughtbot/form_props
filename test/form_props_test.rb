@@ -22,13 +22,13 @@ class FormPropsTest < ActionView::TestCase
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         enctype: "multipart/form-data",
         action: "http://www.example.com",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -47,18 +47,18 @@ class FormPropsTest < ActionView::TestCase
           name: "_method",
           type: "hidden",
           defaultValue: "patch",
-          autocomplete: "off"
+          autoComplete: "off"
         },
         utf8: {
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         action: "http://www.example.com",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -77,18 +77,18 @@ class FormPropsTest < ActionView::TestCase
           name: "_method",
           type: "hidden",
           defaultValue: "put",
-          autocomplete: "off"
+          autoComplete: "off"
         },
         utf8: {
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         action: "http://www.example.com",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -107,18 +107,18 @@ class FormPropsTest < ActionView::TestCase
           name: "_method",
           type: "hidden",
           defaultValue: "delete",
-          autocomplete: "off"
+          autoComplete: "off"
         },
         utf8: {
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         action: "http://www.example.com",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -135,11 +135,11 @@ class FormPropsTest < ActionView::TestCase
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -157,11 +157,11 @@ class FormPropsTest < ActionView::TestCase
           name: "utf8",
           type: "hidden",
           defaultValue: "&#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -177,7 +177,7 @@ class FormPropsTest < ActionView::TestCase
       extras: {},
       props: {
         action: "http://www.example.com",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -193,7 +193,7 @@ class FormPropsTest < ActionView::TestCase
         extras: {},
         props: {
           action: "http://www.example.com",
-          "accept-charset": "UTF-8",
+          acceptCharset: "UTF-8",
           method: "post"
         }
       }.to_json
@@ -213,12 +213,12 @@ class FormPropsTest < ActionView::TestCase
             name: "utf8",
             type: "hidden",
             defaultValue: "&#x2713;",
-            autocomplete: "off"
+            autoComplete: "off"
           }
         },
         props: {
           action: "http://www.example.com",
-          "accept-charset": "UTF-8",
+          acceptCharset: "UTF-8",
           method: "post"
         }
       }.to_json
@@ -277,19 +277,19 @@ class FormPropsTest < ActionView::TestCase
           name: "_method",
           type: "hidden",
           defaultValue: "patch",
-          autocomplete: "off"
+          autoComplete: "off"
         },
         utf8: {
           name: "utf8",
           type: "hidden",
           defaultValue: "\u0026#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         id: "create-post",
         action: "/posts/123",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json
@@ -345,19 +345,19 @@ class FormPropsTest < ActionView::TestCase
           name: "_method",
           type: "hidden",
           defaultValue: "patch",
-          autocomplete: "off"
+          autoComplete: "off"
         },
         utf8: {
           name: "utf8",
           type: "hidden",
           defaultValue: "\u0026#x2713;",
-          autocomplete: "off"
+          autoComplete: "off"
         }
       },
       props: {
         id: "create-post",
         action: "/posts/123",
-        "accept-charset": "UTF-8",
+        acceptCharset: "UTF-8",
         method: "post"
       }
     }.to_json

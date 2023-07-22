@@ -153,10 +153,10 @@ class TextFieldTest < ActionView::TestCase
         ]
       },
       "extras" => {
-        "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autocomplete" => "off"},
-        "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autocomplete" => "off"}
+        "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autoComplete" => "off"},
+        "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autoComplete" => "off"}
       },
-      "props" => {"action" => "/posts/123", "accept-charset" => "UTF-8", "method" => "post"}
+      "props" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
     }
 
     assert_equal(JSON.parse(result), expected)
@@ -187,10 +187,10 @@ class TextFieldTest < ActionView::TestCase
         ]
       },
       "extras" => {
-        "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autocomplete" => "off"},
-        "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autocomplete" => "off"}
+        "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autoComplete" => "off"},
+        "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autoComplete" => "off"}
       },
-      "props" => {"action" => "/posts/123", "accept-charset" => "UTF-8", "method" => "post"}
+      "props" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
     }
 
     assert_equal(JSON.parse(result), expected)

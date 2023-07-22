@@ -17,7 +17,7 @@ export default ({includeHidden= true, name=null, id=null, children, options=[], 
 
   return (
     <>
-      {addHidden && <input type="hidden" disabled={disabled} name={name} value={""} autocomplete="off" />}
+      {addHidden && <input type="hidden" disabled={disabled} name={name} value={""} autoComplete="off" />}
       <select name={name} id={id} multiple={multiple} disabled={disabled} {...rest}>
         {children}
         {optionElements}

@@ -17,7 +17,7 @@ class SubmitTest < ActionView::TestCase
 
         expected = {
           "type" => "submit",
-          "defaultValue" => "Create Post",
+          "text" => "Create Post",
           "name" => "commit"
         }
 
@@ -36,7 +36,7 @@ class SubmitTest < ActionView::TestCase
 
       expected = {
         "type" => "submit",
-        "defaultValue" => "Confirm Post changes",
+        "text" => "Confirm Post changes",
         "name" => "commit"
       }
 
@@ -55,7 +55,7 @@ class SubmitTest < ActionView::TestCase
 
       expected = {
         "type" => "submit",
-        "defaultValue" => "Save changes",
+        "text" => "Save changes",
         "name" => "commit"
       }
 
@@ -72,7 +72,7 @@ class SubmitTest < ActionView::TestCase
 
       expected = {
         "type" => "submit",
-        "defaultValue" => "Update your Post",
+        "text" => "Update your Post",
         "name" => "commit"
       }
 
@@ -92,7 +92,7 @@ class SubmitTest < ActionView::TestCase
 
       expected = {
         "type" => "submit",
-        "defaultValue" => "Update your Post",
+        "text" => "Update your Post",
         "name" => "commit"
       }
 

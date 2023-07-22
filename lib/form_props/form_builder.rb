@@ -132,7 +132,7 @@ module FormProps
     def submit(value = nil, options = {})
       value, options = nil, value if value.is_a?(Hash)
       value ||= submit_default_value
-      options = {name: "commit", value: value}.update(options)
+      options = {name: "commit", text: value}.update(options)
 
       Inputs::Submit.new(@template, options).render
     end
