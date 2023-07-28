@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    form_props (0.0.1)
+    form_props (0.0.2)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
       props_template (>= 0.23.0)

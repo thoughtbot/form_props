@@ -21,7 +21,7 @@ export default ({includeHidden = true, collection=[], ...rest}) => {
 
   return (
     <>
-      {includeHidden && <input type="hidden" name={name} defaultValue={""} autocomplete="off" />}
+      {includeHidden && <input type="hidden" name={name} defaultValue={""} autoComplete="off" />}
       {checkboxes}
     </>
   )
