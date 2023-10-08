@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = "Form props is a Rails form builder that renders form attributes in JSON"
   s.files = Dir["MIT-LICENSE", "README.md", "lib/**/*"]
 
-  s.required_ruby_version = ">= 2.5"
+  s.required_ruby_version = ">= 2.7"
 
   s.add_dependency "activesupport", ">= 7.0.0"
   s.add_dependency "actionview", ">= 7.0.0"
