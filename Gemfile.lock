@@ -1,7 +1,15 @@
 PATH
+  remote: ../props_template
+  specs:
+    props_template (0.24.0)
+      actionview (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      oj (>= 3.9)
+
+PATH
   remote: .
   specs:
-    form_props (0.0.3)
+    form_props (0.0.4)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
       props_template (>= 0.23.0)
@@ -119,10 +127,6 @@ GEM
     parallel (1.23.0)
     parser (3.2.2.1)
       ast (~> 2.4.1)
-    props_template (0.23.0)
-      actionview (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      oj (>= 3.9)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -209,6 +213,7 @@ PLATFORMS
 DEPENDENCIES
   form_props!
   mocha
+  props_template!
   pry-byebug
   rails (~> 7.0)
   standard (>= 1.0)
