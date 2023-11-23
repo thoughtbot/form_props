@@ -4,7 +4,7 @@ module FormProps
   module Inputs
     class HiddenField < TextField
       def render
-        @options[:auto_complete] = "off"
+        @options[:autoComplete] = "off"
         super
       end
 

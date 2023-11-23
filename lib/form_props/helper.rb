@@ -497,12 +497,26 @@ module FormProps
     zoomandpan: "zoomAndPan"
   }
 
+  OPTION_STANDARD_NAMES = {
+    default_value: "defaultValue",
+    default_checked: "defaultChecked",
+    checked_value: "checkedValue",
+    unchecked_value: "uncheckedValue",
+    include_hidden: "includeHidden",
+    include_blank: "includeBlank",
+    max_length: "maxLength",
+    min_length: "minLength",
+    class_name: "className"
+  }
+
+  STANDARD_NAMES = POSSIBLE_STANDARD_NAMES.merge(OPTION_STANDARD_NAMES)
+
   module Helper
     extend self
 
     def format_key(key)
-      if POSSIBLE_STANDARD_NAMES.has_key?(key.to_sym)
-        POSSIBLE_STANDARD_NAMES[key]
+      if STANDARD_NAMES.has_key?(key.to_sym)
+        STANDARD_NAMES[key.to_sym]
       else
         key
       end

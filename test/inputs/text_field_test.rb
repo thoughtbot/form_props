@@ -358,7 +358,7 @@ class TextFieldTest < ActionView::TestCase
 
   def test_text_field_tag_class_string
     form_props(model: @post) do |f|
-      f.text_field(:title, value: "Hello", class_name: "admin")
+      f.text_field(:title, value: "Hello", class: "admin")
     end
     result = json.result!.strip
 

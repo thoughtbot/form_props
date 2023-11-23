@@ -20,7 +20,7 @@ module FormProps
       end
 
       def render
-        json.set!(sanitized_method_name) do
+        json.set!(sanitized_key) do
           json.collection do
             render_collection_for(RadioButtonBuilder)
           end
