@@ -16,6 +16,10 @@ module FormProps
 
       private
 
+      def sanitized_key
+        sanitized_method_name.camelize(:lower)
+      end
+
       def add_options(option_tags, options, value = nil)
         if options[:include_blank]
           content = (options[:include_blank] if options[:include_blank].is_a?(String))
@@ -95,6 +99,7 @@ module FormProps
           end
         end
 
+        key = FormProps::Helper.format_key(key)
         json.set!(key, value)
       end
 
@@ -150,11 +155,11 @@ module FormProps
           end
         end
 
-        json.set!(sanitized_method_name) do
+        json.set!(sanitized_key) do
           input_props(html_options)
 
           if options.key?(:include_hidden)
-            json.include_hidden options[:include_hidden]
+            json.includeHidden options[:include_hidden]
           end
           json.options(option_tags)
         end

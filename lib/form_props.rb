@@ -2,6 +2,7 @@
 
 require "action_view"
 require "action_pack"
+require "form_props/helper"
 require "form_props/action_view_extensions/form_helper"
 require "form_props/form_options_helper"
 require "form_props/inputs/base"

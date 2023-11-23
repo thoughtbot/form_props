@@ -40,7 +40,7 @@ module FormProps
         if flatten
           body_block.call
         else
-          json.set!(sanitized_method_name) do
+          json.set!(sanitized_key) do
             body_block.call
           end
         end
