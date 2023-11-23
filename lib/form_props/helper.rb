@@ -506,7 +506,8 @@ module FormProps
     include_blank: "includeBlank",
     max_length: "maxLength",
     min_length: "minLength",
-    class_name: "className"
+    class_name: "className",
+    read_only: "readOnly"
   }
 
   STANDARD_NAMES = POSSIBLE_STANDARD_NAMES.merge(OPTION_STANDARD_NAMES)

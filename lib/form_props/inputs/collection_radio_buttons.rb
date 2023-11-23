@@ -25,7 +25,7 @@ module FormProps
             render_collection_for(RadioButtonBuilder)
           end
 
-          json.include_hidden(@options.fetch(:include_hidden) { true })
+          json.includeHidden(@options.fetch(:include_hidden) { true })
 
           input_props(@html_options)
         end
