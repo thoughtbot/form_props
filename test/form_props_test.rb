@@ -26,7 +26,7 @@ class FormPropsTest < ActionView::TestCase
         }
       },
       props: {
-        enctype: "multipart/form-data",
+        encType: "multipart/form-data",
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
         method: "post"

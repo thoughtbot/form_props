@@ -20,12 +20,12 @@ module FormProps
       end
 
       def render
-        json.set!(sanitized_method_name) do
+        json.set!(sanitized_key) do
           json.collection do
             render_collection_for(RadioButtonBuilder)
           end
 
-          json.include_hidden(@options.fetch(:include_hidden) { true })
+          json.includeHidden(@options.fetch(:include_hidden) { true })
 
           input_props(@html_options)
         end

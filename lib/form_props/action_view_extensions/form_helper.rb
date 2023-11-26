@@ -40,12 +40,12 @@ module FormProps
         end
 
         html_options = html_options_for_form_with(url, model, **options)
-        html_options["acceptCharset"] ||= html_options.delete("accept-charset")
 
         json.extras do
           extra_props_for_form(json, html_options)
         end
-        json.props(html_options)
+
+        json.props(FormProps::Helper.format_keys(html_options))
       end
 
       private
@@ -62,8 +62,8 @@ module FormProps
           json.set!("csrf") do
             json.name request_forgery_protection_token.to_s
             json.type "hidden"
-            json.default_value token
-            json.auto_complete "off"
+            json.defaultValue token
+            json.autoComplete "off"
           end
         end
       end
@@ -72,8 +72,8 @@ module FormProps
         json.set!("method") do
           json.name "_method"
           json.type "hidden"
-          json.default_value method.to_s
-          json.auto_complete "off"
+          json.defaultValue method.to_s
+          json.autoComplete "off"
         end
       end
 
@@ -81,8 +81,8 @@ module FormProps
         json.set!("utf8") do
           json.name "utf8"
           json.type "hidden"
-          json.default_value "&#x2713;"
-          json.auto_complete "off"
+          json.defaultValue "&#x2713;"
+          json.autoComplete "off"
         end
       end
 

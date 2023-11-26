@@ -151,7 +151,7 @@ module FormProps
       if association.respond_to?(:to_ary)
         explicit_child_index = options[:child_index]
 
-        json.set!("#{association_name}_attributes") do
+        json.set!("#{association_name}Attributes") do
           json.array! association do |child|
             if explicit_child_index
               options[:child_index] = explicit_child_index.call if explicit_child_index.respond_to?(:call)
@@ -163,7 +163,7 @@ module FormProps
           end
         end
       elsif association
-        json.set!("#{association_name}_attributes") do
+        json.set!("#{association_name}Attributes") do
           fields_for_nested_model(name, association, options, block)
         end
       end

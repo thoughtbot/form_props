@@ -22,7 +22,7 @@ module FormProps
         @options[:value] = @tag_value
         @options[:checked] = true if input_checked?(@options)
 
-        name_for_key = sanitized_method_name + "_#{sanitized_value(@tag_value)}"
+        name_for_key = (sanitized_method_name + "_#{sanitized_value(@tag_value)}").camelize(:lower)
 
         body_block = -> {
           add_default_name_and_id_for_value(@tag_value, @options)
