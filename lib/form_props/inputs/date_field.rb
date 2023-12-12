@@ -6,7 +6,7 @@ module FormProps
       private
 
       def format_date(value)
-        value&.strftime("%Y-%m-%d")
+        value.presence&.strftime("%Y-%m-%d")
       end
 
       def field_type
