@@ -139,6 +139,7 @@ module FormProps
 
     def fields_for_with_nested_attributes(association_name, association, options, block)
       name = "#{object_name}[#{association_name}_attributes]"
+      association_key = "#{association_name.to_s.camelize(:lower)}Attributes"
       association = convert_to_model(association)
       json = @template.instance_variable_get(:@__json)
 
@@ -151,7 +152,7 @@ module FormProps
       if association.respond_to?(:to_ary)
         explicit_child_index = options[:child_index]
 
-        json.set!("#{association_name}Attributes") do
+        json.set!(association_key) do
           json.array! association do |child|
             if explicit_child_index
               options[:child_index] = explicit_child_index.call if explicit_child_index.respond_to?(:call)
@@ -163,7 +164,7 @@ module FormProps
           end
         end
       elsif association
-        json.set!("#{association_name}Attributes") do
+        json.set!(association_key) do
           fields_for_nested_model(name, association, options, block)
         end
       end
