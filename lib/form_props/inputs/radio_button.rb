@@ -22,8 +22,6 @@ module FormProps
         @options[:value] = @tag_value
         @options[:checked] = true if input_checked?(@options)
 
-        name_for_key = (sanitized_method_name + "_#{sanitized_value(@tag_value)}").camelize(:lower)
-
         body_block = -> {
           add_default_name_and_id_for_value(@tag_value, @options)
           input_props(@options)
@@ -32,13 +30,17 @@ module FormProps
         if flatten
           body_block.call
         else
-          json.set!(name_for_key) do
+          json.set!(sanitized_key) do
             body_block.call
           end
         end
       end
 
       private
+
+      def sanitized_key
+        @key || (sanitized_method_name + "_#{sanitized_value(@tag_value)}").camelize(:lower)
+      end
 
       def checked?(value)
         value.to_s == @tag_value.to_s

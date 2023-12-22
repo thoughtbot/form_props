@@ -364,6 +364,75 @@ class FormPropsTest < ActionView::TestCase
     assert_equal(result, expected)
   end
 
+  def test_form_with_explicit_key
+    form_props(model: @post, id: "create-post") do |f|
+      f.text_field(:title, key: :aTitle)
+      f.text_area(:body, key: :aBody)
+      f.check_box(:secret, key: :aSecret)
+      f.select(:category, %w[animal economy sports], key: :aCategory)
+    end
+
+    result = json.result!.strip
+
+    expected = {
+      inputs: {
+        aTitle: {
+          type: "text",
+          defaultValue: "Hello World",
+          name: "post[title]",
+          id: "post_title"
+        },
+        aBody: {
+          name: "post[body]",
+          id: "post_body",
+          type: "textarea",
+          defaultValue: "Back to the hill and over it again!"
+        },
+        aSecret: {
+          type: "checkbox",
+          defaultValue: "1",
+          defaultChecked: true,
+          uncheckedValue: "0",
+          includeHidden: true,
+          name: "post[secret]",
+          id: "post_secret"
+        },
+        aCategory: {
+          name: "post[category]",
+          id: "post_category",
+          type: "select",
+          options: [
+            {value: "animal", label: "animal"},
+            {value: "economy", label: "economy"},
+            {value: "sports", label: "sports"}
+          ]
+        }
+      },
+      extras: {
+        method: {
+          name: "_method",
+          type: "hidden",
+          defaultValue: "patch",
+          autoComplete: "off"
+        },
+        utf8: {
+          name: "utf8",
+          type: "hidden",
+          defaultValue: "\u0026#x2713;",
+          autoComplete: "off"
+        }
+      },
+      props: {
+        id: "create-post",
+        action: "/posts/123",
+        acceptCharset: "UTF-8",
+        method: "post"
+      }
+    }.to_json
+    assert_equal(result, expected)
+  end
+
+
   def with_default_enforce_utf8(value)
     old_value = ActionView::Helpers::FormTagHelper.default_enforce_utf8
     ActionView::Helpers::FormTagHelper.default_enforce_utf8 = value

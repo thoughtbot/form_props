@@ -11,13 +11,15 @@ module FormProps
         options = options.with_indifferent_access
 
         @controlled = options.delete(:controlled)
+        @key = options.delete(:key)
+
         super(object_name, method_name, template_object, options)
       end
 
       private
 
       def sanitized_key
-        sanitized_method_name.camelize(:lower)
+        @key || sanitized_method_name.camelize(:lower)
       end
 
       def add_options(option_tags, options, value = nil)
