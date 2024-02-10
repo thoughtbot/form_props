@@ -1,11 +1,11 @@
-# Form Props
+# form_props
 
 ![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
-FormProps is a Rails form builder that outputs HTML props instead of tags. Now
+form_props is a Rails form builder that outputs HTML props instead of tags. Now
 you can enjoy the power and convenience of Rails helpers in React!
 
-By separting attributes from tags, FormProps can offer greater flexbility than normal
+By separting attributes from tags, form_props can offer greater flexbility than normal
 Rails form builders; allowing designers to stay longer in HTML land and more easily
 customize their form structure without needing to know Rails.
 
@@ -98,7 +98,7 @@ documentation here reflects that default. You can change that [behavior](https:/
 if you wish.
 
 ## Flexibility
-FormProps is only concerned about attributes, the designer can focus on tag
+form_props is only concerned about attributes, the designer can focus on tag
 structure and stay longer in HTML land. For example, you can decide to nest an
 input inside a label.
 
@@ -153,7 +153,7 @@ export default (({props, inputs, extras})) => {
 
 ## Error handling
 
-FormProps doesn't handle form errors, but you can easily add this functionality:
+form_props doesn't handle form errors, but you can easily add this functionality:
 
 ```ruby
 json.someForm do
