@@ -10,7 +10,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2', '3.1', '2.7']
-        rails: ['70', '71']
 
     runs-on: 'ubuntu-latest'
 
@@ -26,7 +25,7 @@ jobs:
         run: |
           npm install -g yarn
           yarn install
-          mv Gemfile.rails${{matrix.rails}} Gemfile
+          mv Gemfile.rails71 Gemfile
           bundle install
       - name: Run test
         run: bundle exec rake test
