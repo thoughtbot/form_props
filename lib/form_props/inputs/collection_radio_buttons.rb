@@ -6,6 +6,7 @@ module FormProps
   module Inputs
     class CollectionRadioButtons < Base
       include ActionView::Helpers::Tags::CollectionHelpers
+      include ActionView::Helpers::FormOptionsHelper
       include CollectionHelpers
 
       class RadioButtonBuilder < Builder

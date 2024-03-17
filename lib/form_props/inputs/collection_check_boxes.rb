@@ -6,6 +6,8 @@ module FormProps
   module Inputs
     class CollectionCheckBoxes < Base
       include ActionView::Helpers::Tags::CollectionHelpers
+      include ActionView::Helpers::FormOptionsHelper
+
       include CollectionHelpers
 
       class CheckBoxBuilder < Builder

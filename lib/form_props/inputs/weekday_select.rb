@@ -3,7 +3,10 @@
 module FormProps
   module Inputs
     class WeekdaySelect < Base
+      include ActionView::Helpers::Tags::SelectRenderer
+      include ActionView::Helpers::FormOptionsHelper
       include FormOptionsHelper
+      include SelectRenderer
 
       def initialize(object_name, method_name, template_object, options, html_options)
         @html_options = html_options

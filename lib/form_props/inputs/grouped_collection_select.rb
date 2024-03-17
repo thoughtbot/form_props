@@ -3,7 +3,10 @@
 module FormProps
   module Inputs
     class GroupedCollectionSelect < Base
+      include ActionView::Helpers::Tags::SelectRenderer
+      include ActionView::Helpers::FormOptionsHelper
       include FormOptionsHelper
+      include SelectRenderer
 
       def initialize(object_name, method_name, template_object, collection, group_method, group_label_method, option_key_method, option_value_method, options, html_options)
         @collection = collection
