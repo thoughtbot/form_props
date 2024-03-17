@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module FormProps
-  VERSION = "0.0.6"
+  VERSION = "71.0.0"
 end
