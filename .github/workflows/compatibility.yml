@@ -1,7 +1,8 @@
-name: Compatibility test against Rails and Ruby versions
+name: Compatibility
 on:
   schedule:
     - cron: '* * * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
