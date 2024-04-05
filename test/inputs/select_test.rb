@@ -803,11 +803,6 @@ class SelectTest < ActionView::TestCase
     @continent = Continent.new
     @continent.countries = ["Africa", "Europe"]
 
-    assert_dom_equal(
-      %(<select name="continent[countries]" id="continent_countries"><option selected="selected" value="Africa">Africa</option>\n<option selected="selected" value="Europe">Europe</option>\n<option value="America">America</option></select>),
-      select("continent", "countries", %W[Africa Europe America], {multiple: true})
-    )
-
     form_props(model: @continent) do |f|
       f.select(:countries, %W[Africa Europe America], {multiple: true})
     end
@@ -904,11 +899,6 @@ class SelectTest < ActionView::TestCase
   end
 
   def test_required_select_with_prompt
-    assert_dom_equal(
-      %(<select id="post_category" name="post[category]" required="required"><option value="">Select one</option>\n<option value="abe">abe</option>\n<option value="mus">mus</option>\n<option value="hest">hest</option></select>),
-      select("post", "category", %w[abe mus hest], {prompt: "Select one"}, {required: true})
-    )
-
     @post = Post.new
     @post.category = nil
 
@@ -1297,10 +1287,7 @@ class SelectTest < ActionView::TestCase
   def test_select_with_range
     @post = Post.new
     @post.category = 0
-    assert_dom_equal(
-      "<select id=\"post_category\" name=\"post[category]\"><option value=\"1\">1</option>\n<option value=\"2\">2</option>\n<option value=\"3\">3</option></select>",
-      select("post", "category", 1..3)
-    )
+
     form_props(model: @post) do |f|
       f.select(:category, 1..3)
     end

@@ -1,15 +1,19 @@
 name: Build
 on:
-  - push
-  - pull_request
+  push:
+  pull_request:
+  schedule:
+    - cron: '* * * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Ruby ${{ matrix.ruby }}. Target Rails 70
+    name: Ruby ${{ matrix.ruby }}. Rails ${{ matrix.version }}
     strategy:
       fail-fast: false
       matrix:
         ruby: ['3.3', '3.2', '3.1']
+        version: ['70', '71', 'main']
 
     runs-on: 'ubuntu-latest'
 
@@ -23,7 +27,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
       - name: Setup project
         run: |
-          mv Gemfile.70 Gemfile
+          mv Gemfile.${{ matrix.version }} Gemfile
           npm install -g yarn
           yarn install
           bundle install
