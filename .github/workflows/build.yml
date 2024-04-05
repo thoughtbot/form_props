@@ -5,11 +5,11 @@ on:
 
 jobs:
   build:
-    name: Ruby ${{ matrix.ruby }}
+    name: Ruby ${{ matrix.ruby }}. Target Rails 70
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '3.1', '2.7']
+        ruby: ['3.3', '3.2', '3.1']
 
     runs-on: 'ubuntu-latest'
 
@@ -23,8 +23,10 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
       - name: Setup project
         run: |
+          mv Gemfile.70 Gemfile
           npm install -g yarn
           yarn install
           bundle install
+          bundle update
       - name: Run test
         run: bundle exec rake test
