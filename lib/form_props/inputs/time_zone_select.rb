@@ -3,7 +3,12 @@
 module FormProps
   module Inputs
     class TimeZoneSelect < Base
+      if ActionView::VERSION::STRING >= "7.1"
+        include ActionView::Helpers::Tags::SelectRenderer
+      end
+      include ActionView::Helpers::FormOptionsHelper
       include FormOptionsHelper
+      include SelectRenderer
 
       def initialize(object_name, method_name, template_object, priority_zones, options, html_options)
         @priority_zones = priority_zones

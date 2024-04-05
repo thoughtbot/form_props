@@ -3,7 +3,12 @@
 module FormProps
   module Inputs
     class Select < Base
+      if ActionView::VERSION::STRING >= "7.1"
+        include ActionView::Helpers::Tags::SelectRenderer
+      end
+      include ActionView::Helpers::FormOptionsHelper
       include FormOptionsHelper
+      include SelectRenderer
 
       def initialize(object_name, method_name, template_object, choices, options, html_options)
         @choices = choices
