@@ -3,6 +3,9 @@ on:
   schedule:
     - cron: '* * * * 1'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -32,5 +35,6 @@ jobs:
           npm install -g yarn
           yarn install
           bundle install
+          bundle update
       - name: Run test
         run: bundle exec rake test
