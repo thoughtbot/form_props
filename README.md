@@ -31,7 +31,7 @@ and `bundle install`
 ```ruby
 json.some_form do
   form_props(@post) do |f|
-    f.text :title
+    f.text_field :title
     f.submit
   end
 end
