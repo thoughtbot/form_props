@@ -102,7 +102,7 @@ module FormProps
     end
 
     def radio_button(method, tag_value, options = {})
-      Inputs::RadioButton.new(@object_name, method, @template, tag_value, options).render
+      Inputs::RadioButton.new(@object_name, method, @template, tag_value, objectify_options(options)).render
     end
 
     def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})

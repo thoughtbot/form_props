@@ -302,6 +302,7 @@ class FormPropsTest < ActionView::TestCase
       f.text_area(:body)
       f.check_box(:secret)
       f.select(:category, %w[animal economy sports])
+      f.radio_button(:admin, true)
     end
 
     result = json.result!.strip
@@ -338,6 +339,13 @@ class FormPropsTest < ActionView::TestCase
             {value: "economy", label: "economy"},
             {value: "sports", label: "sports"}
           ]
+        },
+        adminTrue: {
+          type: "radio",
+          value: "true",
+          checked: true,
+          name: "post[admin]",
+          id: "post_admin_true"
         }
       },
       extras: {
