@@ -20,9 +20,9 @@ module FormProps
 
       def render(flatten = false)
         options = @options.stringify_keys
-        options[:type] = "checkbox"
+        options[:type] = field_type
         options[:value] = @checked_value
-        options[:checked] = true if input_checked?(options)
+        options[:checked] = input_checked?(options)
         options[:unchecked_value] = @unchecked_value || ""
         options[:include_hidden] = options.fetch(:include_hidden) { true }
 
@@ -47,6 +47,10 @@ module FormProps
       end
 
       private
+
+      def field_type
+        "checkbox"
+      end
 
       def checked?(value)
         case value

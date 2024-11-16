@@ -28,6 +28,12 @@ module FormProps
           @html_options
         )
       end
+
+      private
+
+      def field_type
+        "select"
+      end
     end
   end
 end

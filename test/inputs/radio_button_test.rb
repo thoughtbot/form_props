@@ -13,7 +13,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "Hello World",
+      "value" => "Hello World",
       "defaultChecked" => true,
       "name" => "post[title]",
       "id" => "post_title_hello_world"
@@ -26,7 +26,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "Goodbye World",
+      "value" => "Goodbye World",
       "name" => "post[title]",
       "id" => "post_title_goodbye_world"
     }
@@ -41,7 +41,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "1",
+      "value" => "1",
       "defaultChecked" => true,
       "name" => "post[admin]",
       "id" => "post_admin_1"
@@ -57,7 +57,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "-1",
+      "value" => "-1",
       "defaultChecked" => true,
       "name" => "post[admin]",
       "id" => "post_admin_-1"
@@ -73,7 +73,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "1",
+      "value" => "1",
       "defaultChecked" => true,
       "name" => "post[admin]",
       "id" => "foo"
@@ -89,7 +89,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "true",
+      "value" => "true",
       "name" => "post[admin]",
       "id" => "post_admin_true"
     }
@@ -102,7 +102,7 @@ class RadioButtonTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "radio",
-      "defaultValue" => "false",
+      "value" => "false",
       "name" => "post[admin]",
       "id" => "post_admin_false"
     }
