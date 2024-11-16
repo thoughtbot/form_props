@@ -18,7 +18,7 @@ module FormProps
       end
 
       def render(flatten = false)
-        @options[:type] = "radio"
+        @options[:type] = field_type
         @options[:value] = @tag_value
         @options[:checked] = true if input_checked?(@options)
 
@@ -37,6 +37,11 @@ module FormProps
       end
 
       private
+
+      def field_type
+        "radio"
+      end
+
 
       def sanitized_key
         @key || (sanitized_method_name + "_#{sanitized_value(@tag_value)}").camelize(:lower)

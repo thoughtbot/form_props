@@ -22,6 +22,12 @@ module FormProps
           time_zone_options_for_select(value || @options[:default], @priority_zones, @options[:model] || ActiveSupport::TimeZone), @options, @html_options
         )
       end
+
+      private
+
+      def field_type
+        "select"
+      end
     end
   end
 end
