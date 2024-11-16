@@ -835,6 +835,32 @@ class SelectTest < ActionView::TestCase
       output
     )
   end
+ 
+  def test_select_with_array_of_one_value
+    @continent = Continent.new
+    @continent.countries = "Africa"
+
+    form_props(model: @continent) do |f|
+      f.select(:countries, %W[Africa Europe America], {multiple: true})
+    end
+
+    result = json.result!.strip
+
+    expected = {
+      "type" => "select",
+      "name" => "continent[countries]",
+      "id" => "continent_countries",
+      "multiple" => true,
+      "defaultValue" => ["Africa"],
+      "options" => [
+        {"value" => "Africa", "label" => "Africa"},
+        {"value" => "Europe", "label" => "Europe"},
+        {"value" => "America", "label" => "America"}
+      ]
+    }
+
+    assert_equal(JSON.parse(result)["inputs"]["countries"], expected)
+  end
 
   def test_required_select
     @post = Post.new

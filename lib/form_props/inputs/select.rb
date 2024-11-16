@@ -35,6 +35,10 @@ module FormProps
 
       private
 
+      def field_type
+        "select"
+      end
+
       # Grouped choices look like this:
       #
       #   [nil, []]

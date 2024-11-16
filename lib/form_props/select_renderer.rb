@@ -30,7 +30,7 @@ module FormProps
         options[:include_blank] ||= true unless options[:prompt]
       end
 
-      html_options["type"] = "select"
+      html_options["type"] = field_type
       value_for_blank = options.fetch(:selected) { value }
       option_tags = add_options(option_tags, options, value_for_blank)
 

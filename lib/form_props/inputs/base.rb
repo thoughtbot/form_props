@@ -24,6 +24,7 @@ module FormProps
 
       def input_props(options)
         return if options.blank?
+        # tag_type = options[:type]
 
         options.each_pair do |key, value|
           type = TAG_TYPES[key]
@@ -68,10 +69,12 @@ module FormProps
           value = value.source
         end
 
+        is_checkable = respond_to?(:field_type, true) && (field_type == "checkbox" || field_type == "radio")
+
         @controlled ||= nil
 
         if !@controlled
-          if key.to_sym == :value
+          if key.to_sym == :value && !is_checkable
             key = "default_value"
           end
 

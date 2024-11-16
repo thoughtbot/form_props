@@ -13,8 +13,9 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
       "uncheckedValue" => "0",
+      "defaultChecked" => false,
       "includeHidden" => true,
       "name" => "post[admin]",
       "id" => "post_admin"
@@ -41,7 +42,8 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
+      "defaultChecked" => false,
       "uncheckedValue" => "0",
       "disabled" => true,
       "includeHidden" => true,
@@ -60,7 +62,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
       "uncheckedValue" => "0",
       "defaultChecked" => true,
       "includeHidden" => true,
@@ -78,7 +80,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
       "defaultChecked" => true,
       "uncheckedValue" => "0",
       "includeHidden" => true,
@@ -106,8 +108,9 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
       "uncheckedValue" => "0",
+      "defaultChecked" => false,
       "includeHidden" => true,
       "name" => "post[secret]",
       "id" => "post_secret"
@@ -167,8 +170,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "1")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "1")
 
     @post.admin = ["1"]
     form_props(model: @post) do |f|
@@ -177,7 +180,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "1")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "1")
 
     @post.admin = Set.new(["1"])
     form_props(model: @post) do |f|
@@ -186,7 +189,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "1")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "1")
   end
 
   def test_check_box_with_include_hidden_false
@@ -197,7 +200,8 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
+      "defaultChecked" => false,
       "includeHidden" => false,
       "uncheckedValue" => "0",
       "name" => "post[secret]",
@@ -224,7 +228,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "on")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "on")
 
     @post.admin = "off"
     form_props(model: @post) do |f|
@@ -232,8 +236,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "on")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "on")
   end
 
   def test_check_box_with_explicit_checked_and_unchecked_values_when_object_value_is_boolean
@@ -244,7 +248,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "false")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "false")
 
     @post.admin = true
     form_props(model: @post) do |f|
@@ -252,8 +256,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "false")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "false")
   end
 
   def test_check_box_with_explicit_checked_and_unchecked_values_when_object_value_is_integer
@@ -264,7 +268,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = 1
     form_props(model: @post) do |f|
@@ -272,8 +276,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = 2
     form_props(model: @post) do |f|
@@ -281,8 +285,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
   end
 
   def test_check_box_with_explicit_checked_and_unchecked_values_when_object_value_is_float
@@ -293,7 +297,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = 1.1
     form_props(model: @post) do |f|
@@ -301,8 +305,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = 2.2
     form_props(model: @post) do |f|
@@ -310,8 +314,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
   end
 
   def test_check_box_with_explicit_checked_and_unchecked_values_when_object_value_is_big_decimal
@@ -322,7 +326,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = BigDecimal("1")
     form_props(model: @post) do |f|
@@ -330,8 +334,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
 
     @post.admin = BigDecimal("2.2", 1)
     form_props(model: @post) do |f|
@@ -339,8 +343,8 @@ class CheckboxFieldTest < ActionView::TestCase
     end
     result = json.result!.strip
 
-    assert_nil(JSON.parse(result)["inputs"]["admin"]["defaultChecked"])
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "0")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], false)
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
   end
 
   def test_check_box_with_nil_unchecked_value
@@ -351,7 +355,7 @@ class CheckboxFieldTest < ActionView::TestCase
     result = json.result!.strip
 
     assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultChecked"], true)
-    assert_equal(JSON.parse(result)["inputs"]["admin"]["defaultValue"], "on")
+    assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "on")
   end
 
   def test_check_box_with_multiple_behavior
@@ -364,7 +368,8 @@ class CheckboxFieldTest < ActionView::TestCase
 
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "1",
+      "value" => "1",
+      "defaultChecked" => false,
       "uncheckedValue" => "0",
       "includeHidden" => true,
       "name" => "post[comment_ids][]",
@@ -380,7 +385,7 @@ class CheckboxFieldTest < ActionView::TestCase
 
     expected = {
       "type" => "checkbox",
-      "defaultValue" => "3",
+      "value" => "3",
       "defaultChecked" => true,
       "uncheckedValue" => "0",
       "includeHidden" => true,

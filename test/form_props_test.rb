@@ -254,7 +254,7 @@ class FormPropsTest < ActionView::TestCase
         },
         secret: {
           type: "checkbox",
-          defaultValue: "1",
+          value: "1",
           defaultChecked: true,
           uncheckedValue: "0",
           includeHidden: true,
@@ -390,7 +390,7 @@ class FormPropsTest < ActionView::TestCase
         },
         aSecret: {
           type: "checkbox",
-          defaultValue: "1",
+          value: "1",
           defaultChecked: true,
           uncheckedValue: "0",
           includeHidden: true,
