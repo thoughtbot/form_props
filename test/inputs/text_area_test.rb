@@ -156,7 +156,7 @@ class TextAreaTest < ActionView::TestCase
         "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autoComplete" => "off"},
         "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autoComplete" => "off"}
       },
-      "props" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
+      "form" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
     }
 
     assert_equal(JSON.parse(result), expected)
@@ -190,7 +190,7 @@ class TextAreaTest < ActionView::TestCase
         "utf8" => {"name" => "utf8", "type" => "hidden", "defaultValue" => "&#x2713;", "autoComplete" => "off"},
         "method" => {"name" => "_method", "type" => "hidden", "defaultValue" => "patch", "autoComplete" => "off"}
       },
-      "props" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
+      "form" => {"action" => "/posts/123", "acceptCharset" => "UTF-8", "method" => "post"}
     }
 
     assert_equal(JSON.parse(result), expected)
