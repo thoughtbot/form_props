@@ -45,7 +45,7 @@ module FormProps
           extra_props_for_form(json, html_options)
         end
 
-        json.props(FormProps::Helper.format_keys(html_options))
+        json.form(FormProps::Helper.format_keys(html_options))
       end
 
       private

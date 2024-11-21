@@ -25,7 +25,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         encType: "multipart/form-data",
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
@@ -56,7 +56,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
         method: "post"
@@ -86,7 +86,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
         method: "post"
@@ -116,7 +116,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
         method: "post"
@@ -138,7 +138,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         acceptCharset: "UTF-8",
         method: "post"
       }
@@ -160,7 +160,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         acceptCharset: "UTF-8",
         method: "post"
       }
@@ -175,7 +175,7 @@ class FormPropsTest < ActionView::TestCase
 
     expected = {
       extras: {},
-      props: {
+      form: {
         action: "http://www.example.com",
         acceptCharset: "UTF-8",
         method: "post"
@@ -191,7 +191,7 @@ class FormPropsTest < ActionView::TestCase
       form_props
       expected = {
         extras: {},
-        props: {
+        form: {
           action: "http://www.example.com",
           acceptCharset: "UTF-8",
           method: "post"
@@ -216,7 +216,7 @@ class FormPropsTest < ActionView::TestCase
             autoComplete: "off"
           }
         },
-        props: {
+        form: {
           action: "http://www.example.com",
           acceptCharset: "UTF-8",
           method: "post"
@@ -286,7 +286,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         id: "create-post",
         action: "/posts/123",
         acceptCharset: "UTF-8",
@@ -362,7 +362,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         id: "create-post",
         action: "/posts/123",
         acceptCharset: "UTF-8",
@@ -430,7 +430,7 @@ class FormPropsTest < ActionView::TestCase
           autoComplete: "off"
         }
       },
-      props: {
+      form: {
         id: "create-post",
         action: "/posts/123",
         acceptCharset: "UTF-8",
