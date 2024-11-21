@@ -1,9 +1,9 @@
 ENV["RAILS_ENV"] ||= "test"
+require "uri"
 require_relative "../lib/form_props"
 require "open3"
 require "byebug"
 require "props_template"
-
 require "minitest"
 require "minitest/autorun"
 require "mocha/minitest"
