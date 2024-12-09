@@ -17,6 +17,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(multipart: true)
 
     expected = {
+      inputs: {},
       extras: {
         utf8: {
           name: "utf8",
@@ -42,6 +43,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(method: :patch)
 
     expected = {
+      inputs: {},
       extras: {
         method: {
           name: "_method",
@@ -72,6 +74,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(method: :put)
 
     expected = {
+      inputs: {},
       extras: {
         method: {
           name: "_method",
@@ -102,6 +105,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(method: :delete)
 
     expected = {
+      inputs: {},
       extras: {
         method: {
           name: "_method",
@@ -130,6 +134,7 @@ class FormPropsTest < ActionView::TestCase
   def test_form_with_false_url
     form_props(url: false)
     expected = {
+      inputs: {},
       extras: {
         utf8: {
           name: "utf8",
@@ -152,6 +157,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(html: {action: false})
 
     expected = {
+      inputs: {},
       extras: {
         utf8: {
           name: "utf8",
@@ -174,6 +180,7 @@ class FormPropsTest < ActionView::TestCase
     form_props(skip_enforcing_utf8: true)
 
     expected = {
+      inputs: {},
       extras: {},
       form: {
         action: "http://www.example.com",
@@ -190,6 +197,7 @@ class FormPropsTest < ActionView::TestCase
     with_default_enforce_utf8 false do
       form_props
       expected = {
+        inputs: {},
         extras: {},
         form: {
           action: "http://www.example.com",
@@ -208,6 +216,7 @@ class FormPropsTest < ActionView::TestCase
       form_props
 
       expected = {
+        inputs: {},
         extras: {
           utf8: {
             name: "utf8",

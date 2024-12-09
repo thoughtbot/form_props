@@ -37,6 +37,8 @@ module FormProps
             capture(builder, &block)
           end
           options[:multipart] ||= builder.multipart?
+        else
+          json.inputs({})
         end
 
         html_options = html_options_for_form_with(url, model, **options)
