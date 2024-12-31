@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.7"
 
-  s.add_dependency "activesupport", ">= 7.0.0"
-  s.add_dependency "actionview", ">= 7.0.0"
+  s.add_dependency "activesupport", ">= 7.0", "< 9.0"
+  s.add_dependency "actionview", ">= 7.0", "< 9.0"
   s.add_dependency "props_template", ">= 0.30.0"
 end
