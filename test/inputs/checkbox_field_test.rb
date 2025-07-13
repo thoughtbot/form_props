@@ -347,6 +347,16 @@ class CheckboxFieldTest < ActionView::TestCase
     assert_equal(JSON.parse(result)["inputs"]["admin"]["value"], "0")
   end
 
+  def test_check_box_unchecked_value_is_string
+    @post.admin = true
+    form_props(model: @post) do |f|
+      f.check_box(:admin, {}, 1, 0)
+    end
+    result = json.result!.strip
+
+    assert_equal("0", JSON.parse(result)["inputs"]["admin"]["uncheckedValue"])
+  end
+
   def test_check_box_with_nil_unchecked_value
     @post.admin = "on"
     form_props(model: @post) do |f|
