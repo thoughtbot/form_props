@@ -5,7 +5,7 @@ module FormProps
     class CheckBox < Base
       def initialize(object_name, method_name, template_object, checked_value, unchecked_value, options)
         @checked_value = checked_value
-        @unchecked_value = unchecked_value
+        @unchecked_value = unchecked_value.to_s
         super(object_name, method_name, template_object, options)
       end
 
