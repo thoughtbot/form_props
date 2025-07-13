@@ -30,7 +30,7 @@ and `bundle install`
 
 ```ruby
 json.some_form do
-  form_props(@post) do |f|
+  form_props(model: @post) do |f|
     f.text_field :title
     f.submit
   end
@@ -125,7 +125,7 @@ For example:
 
 ```js
 json.some_form do
-  form_props(@post) do |f|
+  form_props(model: @post) do |f|
     f.time_zone_select(:time_zone)
     ...
   end
@@ -157,7 +157,7 @@ form_props doesn't handle form errors, but you can easily add this functionality
 
 ```ruby
 json.someForm do
-  form_props(@post) do |f|
+  form_props(model: @post) do |f|
     f.text_field :title
   end
 
@@ -180,7 +180,7 @@ from `defaultValue` to `value`, by using `controlled: true`. For example:
 
 ```ruby
 json.some_form do
-  form_props(@post, controlled: true) do |f|
+  form_props(model: @post, controlled: true) do |f|
     f.text_field :title
   end
 end
