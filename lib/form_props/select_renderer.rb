@@ -23,7 +23,7 @@ module FormProps
 
     def select_content_props(option_tags, options, html_options)
       html_options = html_options.stringify_keys
-      add_default_name_and_id(html_options)
+      add_default_name_and_field(html_options)
 
       if placeholder_required?(html_options)
         raise ArgumentError, "include_blank cannot be false for a required field." if options[:include_blank] == false
