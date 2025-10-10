@@ -9,7 +9,7 @@ module FormProps
 
       def render
         json.set!(sanitized_key) do
-          add_default_name_and_id(@options)
+          add_default_name_and_field(@options)
           @options[:type] ||= field_type
           @options[:value] = @options.fetch(:value) { value_before_type_cast }
 

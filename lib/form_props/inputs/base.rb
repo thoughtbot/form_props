@@ -3,6 +3,12 @@
 module FormProps
   module Inputs
     class Base < ::ActionView::Helpers::Tags::Base
+      # Remove when no longer supporting Rails 7
+      if ActionView::VERSION::STRING < "8"
+        alias_method :add_default_name_and_field_for_value, :add_default_name_and_id_for_value
+        alias_method :add_default_name_and_field, :add_default_name_and_id
+      end
+
       def json
         @json ||= @template_object.instance_variable_get(:@__json)
       end
@@ -13,7 +19,7 @@ module FormProps
         @controlled = options.delete(:controlled)
         @key = options.delete(:key)
 
-        super(object_name, method_name, template_object, options)
+        super
       end
 
       private

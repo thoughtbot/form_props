@@ -23,7 +23,7 @@ module FormProps
         @options[:checked] = true if input_checked?(@options)
 
         body_block = -> {
-          add_default_name_and_id_for_value(@tag_value, @options)
+          add_default_name_and_field_for_value(@tag_value, @options)
           input_props(@options)
         }
 
