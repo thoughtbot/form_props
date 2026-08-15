@@ -2,7 +2,16 @@
 
 module FormProps
   module Inputs
-    class FileField < TextField
+    class FileField < Base
+      def render
+        @options[:type] ||= field_type
+
+        json.set!(sanitized_key) do
+          add_default_name_and_field(@options)
+          input_props(@options)
+        end
+      end
+
       private
 
       def field_type

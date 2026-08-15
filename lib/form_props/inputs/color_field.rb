@@ -2,10 +2,15 @@
 
 module FormProps
   module Inputs
-    class ColorField < TextField
+    class ColorField < Base
       def render
+        @options[:type] ||= field_type
         @options["value"] ||= validate_color_string(value)
-        super
+
+        json.set!(sanitized_key) do
+          add_default_name_and_field(@options)
+          input_props(@options)
+        end
       end
 
       private

@@ -2,12 +2,17 @@
 
 module FormProps
   module Inputs
-    class DatetimeField < TextField
+    class DatetimeField < Base
       def render
+        @options[:type] ||= field_type
         @options[:value] ||= format_date(value)
         @options[:min] = format_date(datetime_value(@options["min"]))
         @options[:max] = format_date(datetime_value(@options["max"]))
-        super
+
+        json.set!(sanitized_key) do
+          add_default_name_and_field(@options)
+          input_props(@options)
+        end
       end
 
       private
