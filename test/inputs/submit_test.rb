@@ -8,21 +8,20 @@ class SubmitTest < ActionView::TestCase
   def test_submit_with_object_as_new_record_and_locale_strings
     I18n.with_locale :submit do
       @post.persisted = false
-      @post.stub(:to_key, nil) do
-        form_props(model: @post) do |f|
-          f.submit
-        end
-
-        result = json.result!.strip
-
-        expected = {
-          "type" => "submit",
-          "text" => "Create Post",
-          "name" => "commit"
-        }
-
-        assert_equal(JSON.parse(result)["inputs"]["submit"], expected)
+      @post.stubs(:to_key).returns(nil)
+      form_props(model: @post) do |f|
+        f.submit
       end
+
+      result = json.result!.strip
+
+      expected = {
+        "type" => "submit",
+        "text" => "Create Post",
+        "name" => "commit"
+      }
+
+      assert_equal(JSON.parse(result)["inputs"]["submit"], expected)
     end
   end
 

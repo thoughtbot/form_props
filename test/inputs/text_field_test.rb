@@ -383,7 +383,7 @@ class TextFieldTest < ActionView::TestCase
       "type" => "text",
       "id" => "post_title",
       "name" => "post[title]",
-      "defaultValue" => "{\"key\"=>\"value\"}"
+      "defaultValue" => {"key" => "value"}.to_s
     }
 
     assert_equal(JSON.parse(result)["inputs"]["title"], expected)
