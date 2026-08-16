@@ -13,12 +13,14 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.3', '3.2', '3.1']
-        version: ['70', '71', '72' , '80', 'main']
+        version: ['70', '71', '72' , '80', '81', 'main']
         exclude:
           - ruby: 3.1
             version: main
           - ruby: 3.1
             version: 80
+          - ruby: 3.1
+            version: 81
 
     runs-on: 'ubuntu-latest'
 
