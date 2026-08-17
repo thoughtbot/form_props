@@ -1,12 +1,12 @@
-# form_props
+<h1 align="center">form_<s>with</s>props</h1>
 
 ![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
 form_props is a fork of Rail's `form_with` made to output HTML attributes in JSON instead
-of tags. You can then transform the props to any React UI library and beyond.
+of tags. You can transform the props to use with any React UI library and beyond!
 
 > [!TIP]
-> Don't want to spend the figuring out how to transform the payload? Use
+> Don't want to transform the payload? Check out
 > [candy_wrapper](https://github.com/thoughtbot/candy_wrapper), a growing
 > collection of copyable wrappers around serveral popular React UI libraries
 
