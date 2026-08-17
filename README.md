@@ -6,10 +6,16 @@ form_props is a fork of Rail's `form_with` made to output HTML attributes in JSO
 of tags. You can transform the props to use with any React UI library and beyond!
 
 > [!TIP]
-> Don't want to transform the payload? Check out
-> [candy_wrapper](https://github.com/thoughtbot/candy_wrapper), a collection of
+> Don't want to transform? Check out [candy_wrapper](https://github.com/thoughtbot/candy_wrapper), a collection of
 > copyable wrappers around 8 of the most popular React UI libraries (React
-> Spectrum, ArkUI, ChakraUI, Mantine, HeroUI, MUI, React Aria and Vanilla)
+> Spectrum, ArkUI, ChakraUI, Mantine, HeroUI, MUI, React Aria and Vanilla).
+> 
+> Just splat the payload into the component and be done!
+>
+> ```
+>   import { MultiSelect } from '@/your_copied_mantine_wrapper'
+>   <MultiSelect {...inputs.country} />
+> ```
 
 ## Installation
 
