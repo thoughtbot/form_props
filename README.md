@@ -1,4 +1,6 @@
-<h1 align="center">form_<s>with</s>props</h1>
+<div align="center">
+  <img src="./images/form_props-currentcolor.svg" alt="form_props" width="350" />
+</div>
 
 ![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
