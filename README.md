@@ -2,17 +2,13 @@
 
 ![Build Status](https://github.com/thoughtbot/form_props/actions/workflows/build.yml/badge.svg?branch=main)
 
-form_props is a Rails form builder that outputs HTML props instead of tags. Now
-you can enjoy the power and convenience of Rails helpers in React!
+form_props is a fork of Rail's `form_with` made to output HTML attributes in JSON instead
+of tags. You can then transform the props to any React UI library and beyond.
 
-By separting attributes from tags, form_props can offer greater flexbility than normal
-Rails form builders; allowing designers to stay longer in HTML land and more easily
-customize their form structure without needing to know Rails.
-
-## Caution
-
-This project is in its early phases of development. Its interface, behavior,
-and name are likely to change drastically before a major version release.
+> [!TIP]
+> Don't want to spend the figuring out how to transform the payload? Use
+> [candy_wrapper](https://github.com/thoughtbot/candy_wrapper), a growing
+> collection of copyable wrappers around serveral popular React UI libraries
 
 ## Installation
 
