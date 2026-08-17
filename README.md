@@ -9,6 +9,13 @@ of tags. You can transform the props to use with any React UI library and beyond
 > Don't want to transform the payload? Check out
 > [candy_wrapper](https://github.com/thoughtbot/candy_wrapper), a growing
 > collection of copyable wrappers around serveral popular React UI libraries
+>
+> Just splat the payload into the component and be done!
+>
+> ```
+>   import { MultiSelect } from '@/your_copied_mantine_wrapper'
+>   <MultiSelect {...inputs.country} />
+> ```
 
 ## Installation
 
