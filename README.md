@@ -47,8 +47,7 @@ would output
 ```
 {
   someForm: {
-    props: {
-      id: "create-post",
+    form: {
       action: "/posts/123",
       acceptCharset: "UTF-8",
       method: "post"
@@ -65,42 +64,57 @@ would output
         type: "hidden",
         defaultValue: "\u0026#x2713;",
         autoComplete: "off"
-      }
+      },
       csrf: {
-        name: "utf8",
-        type: "authenticity_token",
+        name: "authenticity_token",
+        type: "hidden",
         defaultValue: "SomeTOken!23$",
         autoComplete: "off"
       }
     },
     inputs: {
       title: {name: "post[title]", id: "post_title", type: "text", defaultValue: "hello"},
-      submit: {type: "submit", value: "Update a Post"}
+      submit: {name: "commit", text: "Update Post", type: "submit"}
     }
   }
 }
 ```
+
+The `csrf` name is your app's `request_forgery_protection_token`, which is
+`authenticity_token` by default.
 
 You can then proceed to use this output in React like so:
 
 ```js
 import React from 'react'
 
-export default ({props, inputs, extras}) => {
-  <form {...props}>
+export default ({form, inputs, extras}) => (
+  <form {...form}>
     {Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} key={hiddenProps.name}/>))}
 
     <input {...inputs.title} />
-    <label for={inputs.title.id}>Your Name</label>
+    <label htmlFor={inputs.title.id}>Your Name</label>
     <button {...inputs.submit}>{inputs.submit.text}</button>
   </form>
-}
+)
 ```
 
 ### Key format
-By default, props_template automatically `camelize(:lower)` on all keys. All
-documentation here reflects that default. You can change that [behavior](https://github.com/thoughtbot/props_template#change-key-format)
-if you wish.
+`form_props` formats keys itself, independent of props_template's key format
+setting. Attribute names are mapped to their React equivalents (for example,
+`class` becomes `className` and `accept-charset` becomes `acceptCharset`), and
+the keys under `inputs` are the method names in `camelize(:lower)`, so
+`f.datetime_field(:created_at)` is found at `inputs.createdAt`.
+
+You can override the key of any input with the `key:` option:
+
+```ruby
+form_props(model: @post) do |f|
+  f.text_field(:title, key: :aTitle)
+end
+```
+
+`inputs.aTitle` would then hold the title field.
 
 ## Flexibility
 form_props is only concerned about attributes, the designer can focus on tag
@@ -108,7 +122,7 @@ structure and stay longer in HTML land. For example, you can decide to nest an
 input inside a label.
 
 ```js
-<label for={inputs.name.id}>
+<label htmlFor={inputs.name.id}>
   Your Name
   <input {...inputs.name} type="text"/>
 </label>
@@ -117,7 +131,7 @@ input inside a label.
 or not
 
 ```js
-<label for={inputs.name.id}>Your Name</label>
+<label htmlFor={inputs.name.id}>Your Name</label>
 <input {...inputs.name} />
 ```
 
@@ -144,9 +158,9 @@ Then use it the props your own components or a external component like
 import React from 'react'
 import Select from 'react-select';
 
-export default (({props, inputs, extras})) => {
+export default ({form, inputs, extras}) => {
   return (
-    <form {...props}>
+    <form {...form}>
       <Select
         {...inputs.timeZone}
         isMulti={inputs.timeZone.multiple}
@@ -173,7 +187,7 @@ end
 then merge it later
 
 ```js
-<MyTextComponent {...someForm.inputs.title, error: ...someForm.errors.title}>
+<MyTextComponent {...someForm.inputs.title} error={someForm.errors.title} />
 ```
 
 ## form_props
@@ -191,19 +205,34 @@ json.some_form do
 end
 ```
 
-By default, the `controlled` option is `false`.
+By default, the `controlled` option is `false`. With `controlled: true`,
+checkboxes and radio buttons also use `checked` instead of `defaultChecked`.
 
-###
+Like `form_with`, `url:`, `scope:`, and `format:` are also accepted. When
+`model:` is given, `url` defaults to the model's polymorphic path (with
+`format:` if given) and `scope` defaults to the model's param key. For example:
 
-`props` Attributes that you can splat directly into your `<form>` element.
+```ruby
+json.search_form do
+  form_props(url: "/search", scope: :query, method: :get) do |f|
+    f.search_field :term
+  end
+end
+```
 
+### Output
+
+`form` contains attributes that you can splat directly into your `<form>` element.
+
+`inputs` contains the attributes for each input, keyed by the camelized method
+name (see [Key format](#key-format)).
 
 `extras` contain hidden input attributes that are created by form_props
 indirectly, for example, the `csrf` token. Its best to wrap this in a custom
 component that does the following. An [Extra] component is available
 
 ```js
-Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} type="hidden"/>))}
+Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} type="hidden" key={hiddenProps.name}/>))
 ```
 
 
@@ -214,14 +243,14 @@ Object.values(extras).map((hiddenProps) => (<input {...hiddenProps} type="hidden
 ```
 check_box                 file_field                submit
 collection_check_boxes    grouped_collection_select tel_field
-collection_helpers        hidden_field              text_area
-collection_radio_buttons  month_field               text_field
-collection_select         number_field              time_field
-color_field               password_field            time_zone_select
-date_field                radio_button              url_field
-datetime_field            range_field               week_field
-datetime_local_field      search_field              weekday_select
-email_field               select
+collection_radio_buttons  hidden_field              text_area
+collection_select         month_field               text_field
+color_field               number_field              time_field
+date_field                password_field            time_zone_select
+datetime_field            radio_button              url_field
+datetime_local_field      range_field               week_field
+email_field               search_field              weekday_select
+fields_for                select
 ```
 
 `form_props` is a fork of `form_with`, and the accompanying form builder
@@ -246,10 +275,13 @@ no longer takes in blocks to do so.
 2. `defaultValue`s are not escaped. Instead, we lean on PropsTemplate
 to [escape] JSON and HTML entities.
 3. `defaultValue` will not appear as a key if no `value` was set.
-3. `data-disable-with` is removed on submit buttons.
-4. `data-remote` is removed from form props.
-5. For helpers selectively render hidden inputs, we passed the attribute to
-5. `f.select` helpers does not render `selected` on `options`, instead it follows
+4. `data-disable-with` is removed on submit buttons.
+5. `data-remote` is removed from the `form` attributes.
+6. For helpers that selectively render hidden inputs (`check_box`,
+`collection_check_boxes`, `collection_radio_buttons`, and `select`), we pass
+the `includeHidden` attribute to your component instead of rendering the
+hidden input.
+7. `f.select` helpers does not render `selected` on `options`, instead it follows
 react caveats and renders on the input's `value`. For example:
 
 ```js
@@ -274,7 +306,7 @@ react caveats and renders on the input's `value`. For example:
 helpers. For example:
 
 ```
-<label for={inputs.name.id} />
+<label htmlFor={inputs.name.id} />
 ```
 
 `rich_text_area`. We encourage you to use the `f.text_area` helper in
@@ -285,6 +317,9 @@ combination with Trix wrapped in React, or TinyMCE's react component.
 `date_select`, `time_select`, `datetime_select`. We encourage you to use other
 alternatives like `react-date-picker` in combination with other supported date
 field helpers.
+
+`label`, `button`, `date_select`, `time_select`, and `datetime_select` are
+removed from the form builder, so calling them raises a `NoMethodError`.
 
 ## Text helpers
 
@@ -324,7 +359,7 @@ form_props(model: @post) do |f|
 end
 ```
 
-`inputs.created_at` would output
+`inputs.createdAt` would output
 
 ```json
 {
@@ -385,16 +420,21 @@ end
 ```json
 {
   "type": "checkbox",
-  "defaultValue": "on",
+  "value": "on",
+  "defaultChecked": true,
   "uncheckedValue": "off",
+  "includeHidden": true,
   "name": "post[admin]",
-  "id": "post_admin",
-  "includeHidden": true
+  "id": "post_admin"
 }
 ```
 
+Unlike other inputs, checkboxes and radio buttons keep `value` as is (it is the
+value submitted when checked) and use `defaultChecked` for their checked state.
+
 ## Radio helper
-[radio_button] has the same arguments as its Rails counterpart. The radio button is unique
+[radio_button] has the same arguments as its Rails counterpart. The radio
+button is unique in that its key on `inputs` includes its value.
 
 When used like so:
 
@@ -413,7 +453,7 @@ would output:
 ```json
 {
   "type": "radio",
-  "defaultValue": "true",
+  "value": "true",
   "name": "post[admin]",
   "id": "post_admin_true"
 }
@@ -424,10 +464,10 @@ and `inputs.adminFalse` would output
 ```json
 {
   "type": "radio",
-  "defaultValue": "false",
+  "value": "false",
+  "defaultChecked": true,
   "name": "post[admin]",
-  "id": "post_admin_false",
-  "checked": true
+  "id": "post_admin_false"
 }
 ```
 
@@ -544,8 +584,8 @@ end
 ```
 
 
-## Group collection select
-[group_collection_select] has the same arguments its Rails counterpart.
+## Grouped collection select
+[grouped_collection_select] has the same arguments its Rails counterpart.
 
 Like `select`, you'll need combine this with a custom `Select` component. An
 example [Select component] is available.
@@ -633,22 +673,63 @@ end
 ```
 
 [collection_radio_buttons] and [collection_check_boxes] usage is the same with
-their rails counterpart, and when used, would render:
+their rails counterpart. When used like so:
 
+```ruby
+categories = [Category.new(1, "Category 1"), Category.new(2, "Category 2")]
+
+form_props(model: @user) do |f|
+  f.collection_check_boxes(:category_ids, categories, :id, :name, {}, {name: "user[other_category_ids][]"})
+end
 ```
+
+`inputs.categoryIds` would output:
+
+```json
 {
   "collection": [
-    {"name":"user[other_category_ids][]","type": "checkbox", "defaultValue": "1", "uncheckedValue":"","id":"user_category_ids_1","label": "Category 1"},
-    {"name":"user[other_category_ids][]","type": "checkbox", "defaultValue": "2", "uncheckedValue":"","id":"user_category_ids_2","label": "Category 2"}
+    {"name": "user[other_category_ids][]", "type": "checkbox", "value": "1", "defaultChecked": false, "uncheckedValue": "", "includeHidden": true, "id": "user_category_ids_1", "label": "Category 1"},
+    {"name": "user[other_category_ids][]", "type": "checkbox", "value": "2", "defaultChecked": false, "uncheckedValue": "", "includeHidden": true, "id": "user_category_ids_2", "label": "Category 2"}
   ],
-  "name": "user[other_category_ids][]",
-  "includeHidden": true
+  "includeHidden": true,
+  "name": "user[other_category_ids][]"
 }
 ```
+
+The outer `name` only appears because it was passed in `html_options`.
 
 Like select, you would need a custom component to render. An example
 implementation for [CollectionCheckBoxes] and [CollectionRadioButtons] are
 available.
+
+## Nested fields
+[fields_for] and [fields] work inside `form_props`. When the model accepts
+nested attributes for an association, the fields are nested under an
+`<association>Attributes` key, and persisted records include a hidden `id`
+input (disable with `include_id: false`):
+
+```ruby
+form_props(model: @post) do |f|
+  f.fields_for(:comments) do |cf|
+    cf.text_field(:name)
+  end
+end
+```
+
+`inputs.commentsAttributes` would output an array, one entry per comment:
+
+```json
+[
+  {
+    "name": {"type": "text", "defaultValue": "comment #1", "name": "post[comments_attributes][0][name]", "id": "post_comments_attributes_0_name"},
+    "id": {"type": "hidden", "defaultValue": "1", "autoComplete": "off", "name": "post[comments_attributes][0][id]", "id": "post_comments_attributes_0_id"}
+  }
+]
+```
+
+A singular association, e.g. `has_one :author`, outputs a single object at
+`inputs.authorAttributes` instead of an array. Without nested attributes, the
+fields are added directly to `inputs`.
 
 ## jbuilder
 
@@ -711,7 +792,8 @@ end
 [collection_select]: https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormBuilder.html#method-i-collection_select
 [collection_check_boxes]: https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormBuilder.html#method-i-collection_check_boxes
 [weekday_select]: https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormBuilder.html#method-i-weekday_select
-[group_collection_select]: https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormBuilder.html#method-i-grouped_collection_select
+[time_zone_select]: https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormBuilder.html#method-i-time_zone_select
+[Rails Guides for form helpers]: https://guides.rubyonrails.org/form_helpers.html
 
 ## Special Thanks
 
