@@ -100,7 +100,7 @@ class NestedAttributesTest < ActionView::TestCase
         af.text_field(:name)
       end
     end
-    result = JSON.parse(json.result!.strip)
+    result = JSON.parse(json.result!.strip, allow_duplicate_key: true)
 
     author = result["inputs"]["authorAttributes"]
 
@@ -260,7 +260,7 @@ class NestedAttributesTest < ActionView::TestCase
         cf.text_field(:name)
       end
     end
-    result = JSON.parse(json.result!.strip)
+    result = JSON.parse(json.result!.strip, allow_duplicate_key: true)
 
     comments = result["inputs"]["commentsAttributes"]
     assert_equal 2, comments.length
